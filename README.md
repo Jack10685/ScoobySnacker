@@ -1,5 +1,6 @@
 # ScoobySnacker
 an open source zip encryption breaker featuringt a dictionary attack, brute-force attack, and scooby doo
+
 Uses Zip4j (available here: https://github.com/srikanth-lingala/zip4j), which is packaged in with the source code
 
 HOW TO USE:
