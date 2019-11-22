@@ -60,16 +60,16 @@ public class PasswordTester {
         ZipPasswordBreaker.log("Attempting brute-force attack...");
         if (lowerBound > upperBound) {
            ZipPasswordBreaker.logError("ERROR: brute-force bounds incorrectly set");
-           //return new Password(); 
+           return;
         }
         if (!testZipIsValid(zipFile)) {
             ZipPasswordBreaker.logError("ERROR: zip file specified does not exist or is not a zip file");
-            //return new Password();
+            return;
         }
         ZipFile zip = new ZipFile(zipFile);
         if (!testZipHasPassword(zip)) {
             ZipPasswordBreaker.logError("ERROR: zip file specified does not have a password");
-            //return new Password();
+            return;
         }
         
         /*
@@ -91,61 +91,12 @@ public class PasswordTester {
         }
         if (chars.isEmpty()) {
             ZipPasswordBreaker.logError("ERROR: No checkboxes selected for brute-force attack");
-            //return new Password();
+            return;
         } else {
             BruteForceAttack bfa = new BruteForceAttack(zip, lowerBound, upperBound, chars);
             Thread thread = new Thread(bfa);
             thread.start();
         }
-        
-        
-        
-        /*
-            initialize password char array
-        */
-        /*//ArrayList<Character> password = new ArrayList<>();
-        ArrayList<Integer> position = new ArrayList<>();
-        for (int i = 0; i < lowerBound; i++) {
-            //password.add(chars.get(0));
-            position.add(0);
-            ZipPasswordBreaker.log(""+i);
-        }
-        
-        while (position.size() <= upperBound) {
-            position.set(0, position.get(0)+1);
-            if (position.get(0) >= chars.size()) {
-                position.set(0, 0);
-                int digit = 1;
-                while (digit != 0) {
-                    position.set(digit, position.get(digit)+1);
-                    if (position.get(digit) >= chars.size()) {
-                        position.set(digit, 0);
-                        digit++;
-                        if (digit >= position.size()) {
-                            position.add(0);
-                            digit = 0;
-                        }
-                    }
-                    else {
-                        digit = 0;
-                    }
-                }
-            }
-            
-            String test = "";
-            for (int i = 0; i < position.size(); i++) {
-                test+=chars.get(position.get(i));
-            }
-            System.out.println(test);
-            boolean isCorrect = testPassword(zip, test);
-            if (isCorrect) {
-                ZipPasswordBreaker.logSuccess("PASSWORD FOUND:"+test);
-                ZipPasswordBreaker.log("File has been extracted to extracted/"+zip.getFile().getName()+"/");
-                //return new Password(test);
-            }
-        }*/
-        
-        //return new Password();
     }
     
     /**
@@ -158,12 +109,12 @@ public class PasswordTester {
         ZipPasswordBreaker.log("Attempting dictionary attack...");
         if (!testZipIsValid(zipFile)) {
             ZipPasswordBreaker.logError("ERROR: zip file specified does not exist or is not a zip file");
-            return new Password();
+            return new Password(true);
         }
         ZipFile zip = new ZipFile(zipFile);
         if (!testZipHasPassword(zip)) {
             ZipPasswordBreaker.logError("ERROR: zip file specified does not have a password");
-            return new Password();
+            return new Password(true);
         }
         try {
             FileReader fr = new FileReader(passwordList);
@@ -198,6 +149,9 @@ public class PasswordTester {
      * @return if the file is a valid zip file
      */
     private static boolean testZipIsValid(File zip) {
+        if (zip == null) {
+            return false;
+        }
         if (!zip.exists()) {
             return false;
         } 
