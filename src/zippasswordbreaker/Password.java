@@ -12,6 +12,7 @@ package zippasswordbreaker;
 public class Password {
     private String password;
     private boolean found;
+    private boolean badFile;
     
     /**
      * Defines a password object that does not have a valid password
@@ -19,6 +20,13 @@ public class Password {
     public Password() {
         found = false;
         password = "";
+        badFile = false;
+    }
+    
+    public Password(boolean badFile) {
+        this.badFile = badFile;
+        password = "";
+        found = false;
     }
     
     /**
@@ -28,6 +36,15 @@ public class Password {
     public Password(String password) {
         this.password = password;
         found = true;
+        badFile = true;
+    }
+    
+    /**
+     * Returns whether or not the Zip file is missing or corrupt
+     * @return the status, true = broke, false = OK
+     */
+    public boolean getFileIsBad() {
+        return badFile;
     }
     
     /**
