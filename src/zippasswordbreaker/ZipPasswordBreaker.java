@@ -185,7 +185,7 @@ public class ZipPasswordBreaker {
         logger.setVerticalAlignment(JLabel.TOP);
         spane.getViewport().add(logger);
         
-        log("Welcome to ScoobySnacker<br>Created by Connor Jack");
+        log("Welcome to ScoobySnacker<br>Created by Connor Jack and Jevon Erickson");
         
         showPass = new JCheckBox();
         showPass.setSize(20,20);
@@ -199,14 +199,21 @@ public class ZipPasswordBreaker {
         sps.setLocation(5, 224);
         p5.add(sps);
         
+        JButton clear = new JButton("Clear");
+        clear.setSize(70, 20);
+        clear.setLocation(190, 224);
+        clear.addActionListener(buttonHandler);
+        clear.setActionCommand("clear");
+        p5.add(clear);
+        
         JLabel psw = new JLabel("Jinkies! it's the password:");
         psw.setSize(200,20);
-        psw.setLocation(200, 224);
+        psw.setLocation(265, 224);
         p5.add(psw);
         
         passwordBox = new JTextField();
-        passwordBox.setSize(100,20);
-        passwordBox.setLocation(355, 224);
+        passwordBox.setSize(55,20);
+        passwordBox.setLocation(420, 224);
         passwordBox.setEditable(false);
         p5.add(passwordBox);
         
@@ -215,37 +222,26 @@ public class ZipPasswordBreaker {
         frame.setVisible(true);
     }
     
-    /**
-     * Used to log updates to the in-GUI console
-     * @param text the update message
-     */
     public static void log(String text) {
        consoleText = "<span style=\"color:white;\">"+text+"</span><br>"+consoleText;
        logger.setText("<html>"+consoleText+"</html>");
     }
     
-    /**
-     * Used to log errors to the in-GUI console
-     * @param text the error message
-     */
     public static void logError(String text) {
        consoleText = "<span style=\"color:red;\">"+text+"</span><br>"+consoleText;
        logger.setText("<html>"+consoleText+"</html>");
     }
     
-    /**
-     * Used to add positive updates to the in-GUI console
-     * @param text the success message
-     */
     public static void logSuccess(String text) {
        consoleText = "<span style=\"color:green;\">"+text+"</span><br>"+consoleText;
        logger.setText("<html>"+consoleText+"</html>");
     }
     
-    /**
-     * Used to set the password in the GUI's JTextField
-     * @param text the password found
-     */
+    public static void clearLog() {
+        consoleText = "";
+        logger.setText("");
+    }
+    
     public static void setPassword(String text) {
         passwordBox.setText(text);
     }
