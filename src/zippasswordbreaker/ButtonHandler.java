@@ -65,10 +65,13 @@ public class ButtonHandler implements ActionListener{
                 dictButton.setText(jic);
             }
         }
+        if (e.getActionCommand().equals("clear")) {
+            ZipPasswordBreaker.clearLog();
+        }
         if (e.getActionCommand().equals("gangway")) {
             if (dictFile != null) {
                 Password pass = PasswordTester.dictionaryAttack(zipFile, dictFile);
-                if (!pass.foundPassword()) {
+                if (!pass.foundPassword() && !pass.getFileIsBad()) {
                     PasswordTester.bruteforceAttack(zipFile, (int) ZipPasswordBreaker.startnum.getValue(), (int) ZipPasswordBreaker.endnum.getValue(), ZipPasswordBreaker.upperbox.isSelected(), ZipPasswordBreaker.lowerbox.isSelected(), ZipPasswordBreaker.numbox.isSelected(), ZipPasswordBreaker.symbox.isSelected());
                 }
             } else {
