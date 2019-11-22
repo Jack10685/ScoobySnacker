@@ -61,7 +61,7 @@ public class BruteForceAttack implements Runnable{
                             digit++;
                             if (digit >= position.size()) {
                                 position.add(0);
-                                if (digit <= upperBound)
+                                if (digit < upperBound)
                                     ZipPasswordBreaker.log("Testing "+(digit+1)+"-length passwords...");
                                 digit = 0;
                             }
