@@ -1,5 +1,5 @@
 # ScoobySnacker
-an open source zip encryption breaker featuringt a dictionary attack, brute-force attack, and scooby doo
+an open source zip encryption breaker featuring a dictionary attack, brute-force attack, and scooby doo
 
 Uses Zip4j (available here: https://github.com/srikanth-lingala/zip4j), which is packaged in with the source code
 
@@ -13,3 +13,11 @@ HOW TO USE:
 
 Dictionary file:
 The dictionary file must be a .txt file, with each password to be tested written one-per-line
+
+ Copyright [2019] [Connor Jack and Jevon Erickson]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
